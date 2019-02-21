@@ -1,13 +1,18 @@
-
 package book;
-
 
 public interface book {
     
-    public  void addBook();
-    public void deleteBook();
-    public void updateBook();
-    public  void displayAvailbleBookInfor();
-    public void displayIssueBookInfo();
+    public abstract  void addBook();
+
+    public abstract void deleteBook();
+
+    public abstract void updateBook();
+
+    public abstract void displayAvailbleBookInfor();
+
+    public abstract void displayIssueBookInfo();
 //     kasdjf
+    
+//    thiet
+
 }
