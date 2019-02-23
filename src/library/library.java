@@ -2,7 +2,7 @@ package library;
 
 public interface library {
 
-    public void addLibrary();
+    public abstract  void addLibrary();
 
     public abstract void searchLibrary();
 
