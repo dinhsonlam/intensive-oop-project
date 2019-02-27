@@ -49,14 +49,18 @@ public class schoolBook extends bookDetail {
         System.out.println("Enter status of book: [0: new / 1: old]");
         Scanner input2 = new Scanner(System.in);
         this.status = input2.nextLine();
-    
+
     }
 
     @Override
     public String toString() {
-        return super.toString()+ ", Status: "+this.bookStatus(); //To change body of generated methods, choose Tools | Templates.
+        return super.toString() + ", Status: " + this.bookStatus();
     }
-    
-    
+
+    public static void main(String[] args) {
+        schoolBook sgk = new schoolBook(1, "Toan", "Nha xuat ban giao duc");
+        sgk.addBook();
+        System.out.println(" " + sgk.toString());
+    }
 
 }

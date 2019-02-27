@@ -43,13 +43,13 @@ public class bookDetail implements book {
         this.author = author;
     }
 
-//    public static void main(String[] args) {
-//        bookDetail book1 = new bookDetail(0, "Dac Nhan Tam", "To Hoai");
-////        
-//        book1.addBook();
-//        book1.addBook();
-//        book1.displayAvailbleBookInfor();
-//    }
+    public static void main(String[] args) {
+        bookDetail book1 = new bookDetail(0, "Dac Nhan Tam", "To Hoai");
+//        
+        book1.addBook();
+        book1.addBook();
+        book1.displayAvailbleBookInfor();
+    }
 
     @Override
     public void addBook() {
@@ -62,7 +62,7 @@ public class bookDetail implements book {
 
 //        add book to list
         this.bookList.add(bookDetail);
-
+        
     }
 
     @Override
@@ -106,7 +106,7 @@ public class bookDetail implements book {
 
     }
 
-    //    fucntions to input data inoto object
+    //    fucntions to input data into object
     public int inputId() {
         System.out.println("Input book id: ");
         while (true) {
