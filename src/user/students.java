@@ -9,8 +9,9 @@ public class students extends user{
         this.class_ = class_;
     }
 
-    public students(int userID, String name) {
+    public students(int userID, String name, String class_) {
         super(userID, name, "Student");
+        this.class_ = class_;
     }
 
     
@@ -29,7 +30,15 @@ public class students extends user{
         System.out.println("Id: "+super.getUserID());
         System.out.println("Name: "+super.getName());
         System.out.println("Position: "+super.getPosition());
+        System.out.println("Class: "+getClass_());
     }
+
+    @Override
+    public String toString() {
+        return "students{" + "class_=" + class_ + '}';
+    }
+    
+    
     
     
 }

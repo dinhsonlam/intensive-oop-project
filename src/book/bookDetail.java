@@ -43,13 +43,13 @@ public class bookDetail implements book {
         this.author = author;
     }
 
-    public static void main(String[] args) {
-        bookDetail book1 = new bookDetail(0, "Dac Nhan Tam", "To Hoai");
-//        
-        book1.addBook();
-        book1.addBook();
-        book1.displayAvailbleBookInfor();
-    }
+//    public static void main(String[] args) {
+//        bookDetail book1 = new bookDetail(0, "Dac Nhan Tam", "To Hoai");
+////        
+//        book1.addBook();
+//        book1.addBook();
+//        book1.displayAvailbleBookInfor();
+//    }
 
     @Override
     public void addBook() {
