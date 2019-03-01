@@ -59,7 +59,7 @@ public class librarians extends user {
             
             System.out.println("Enter teacher's name: ");
             String name = input.nextLine();
-            System.out.println("Enter ");
+            System.out.println("Enter sdfkjsd");
         }else{
             
         }
