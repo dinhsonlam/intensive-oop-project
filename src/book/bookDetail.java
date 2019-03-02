@@ -9,14 +9,16 @@ public class bookDetail implements book {
     private int bookID;
     private String title;
     private String author;
-
+    private String status;
+    
     public static Scanner input = new Scanner(System.in);
     private List<bookDetail> bookList = new ArrayList<bookDetail>();
 
-    public bookDetail(int bookID, String title, String author) {
+    public bookDetail(int bookID, String title, String author, String status) {
         this.bookID = bookID;
         this.title = title;
         this.author = author;
+        this.status = status;
     }
 
     public int getBookID() {
@@ -43,6 +45,31 @@ public class bookDetail implements book {
         this.author = author;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public static Scanner getInput() {
+        return input;
+    }
+
+    public static void setInput(Scanner input) {
+        bookDetail.input = input;
+    }
+
+    public List<bookDetail> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<bookDetail> bookList) {
+        this.bookList = bookList;
+    }
+
+    
 //    public static void main(String[] args) {
 //        bookDetail book1 = new bookDetail(0, "Dac Nhan Tam", "To Hoai");
 ////        
@@ -58,7 +85,8 @@ public class bookDetail implements book {
 
         String title = inputTitle();
         String author = inputAuthor();
-        bookDetail bookDetail = new bookDetail(id, title, author);
+        String status = "availble";//default value of status
+        bookDetail bookDetail = new bookDetail(id, title, author,status);
 
 //        add book to list
         this.bookList.add(bookDetail);
@@ -66,7 +94,7 @@ public class bookDetail implements book {
     }
 
     @Override
-    public void deleteBook(int bookID) {
+    public void removeBook(int bookID) {
 
         this.bookList.remove(bookID);
 

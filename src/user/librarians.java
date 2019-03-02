@@ -35,13 +35,13 @@ public class librarians extends user {
 
     public void addUser() {
         System.out.println("Choose type of member: ");
-        System.out.println("[1]: Students | [2]: Teachers | [3]: Back");
+        System.out.println("[1]: Students | [2]: Teachers ");
         int chooseUser;
-        
+
         do {
             chooseUser = checkInputData.CheckInpInt();
 //            System.out.println("Try again!!");
-        } while (chooseUser != 1 && chooseUser != 2 && chooseUser != 3);
+        } while (chooseUser != 1 && chooseUser != 2);
 
         if (chooseUser == 1) {
             int id = (studentList.size() > 0) ? (studentList.size() + 1) : 1;
@@ -54,34 +54,60 @@ public class librarians extends user {
             user user_ = new students(id, name, class_);
 //            add user into list
             this.studentList.add((students) user_);
-        }else if(chooseUser == 2){
+        } else {
             int id = (teacherList.size() > 0) ? (teacherList.size() + 1) : 1;
-            
+
             System.out.println("Enter teacher's name: ");
             String name = input.nextLine();
-            System.out.println("Enter sdfkjsd");
-        }else{
+            user user_ = new teachers(id, name);
             
+            this.teacherList.add((teachers) user_);
         }
-            
 
     }
 
-    public void removeUser() {
+    public void removeUser(int userID, String userType) {
+        
+//        userType = student or teacher
+//        System.out.println("Chooce type of");
 
+        if ("student".equals(userType)) {
+            this.studentList.remove(userID);
+        }else{
+            this.teacherList.remove(userID);
+        }
     }
 
-    public void bookBorrowing() {
-
+    public void borrowBook() {
+        
     }
 
     public void displayAllUser() {
-
+        System.out.println("-All of member's information:-");
+        
+        for (teachers teacher : teacherList) {
+            System.out.println("-------Teacher Member------");
+            System.out.println("\tId: "+teacher.getUserID());
+            System.out.println("\tName: "+teacher.getName());
+            System.out.println("\tPosition: "+teacher.getPosition());
+            System.out.println("---------------------------");
+        }
+        
+        for (students student : studentList) {
+            System.out.println("-------Teacher Member------");
+            System.out.println("\tId: "+student.getUserID());
+            System.out.println("\tName1: "+student.getName());
+            System.out.println("\tPosition: "+student.getPosition());
+            System.out.println("\tClass: "+student.getClass_());
+            System.out.println("---------------------------");
+        }
     }
 
     public static void main(String[] args) {
         librarians thuthu1 = new librarians();
         thuthu1.addUser();
+        thuthu1.addUser();
+        thuthu1.displayAllUser();
     }
 
 }

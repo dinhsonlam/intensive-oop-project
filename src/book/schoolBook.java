@@ -7,8 +7,8 @@ public class schoolBook extends bookDetail {
     private String status;
     private int number;
 
-    public schoolBook(int bookID, String title, String author) {
-        super(bookID, title, author);
+    public schoolBook(int bookID, String title, String author,String status) {
+        super(bookID, title, author, status);
     }
 
     public String getStatus() {
@@ -57,10 +57,10 @@ public class schoolBook extends bookDetail {
         return super.toString() + ", Status: " + this.bookStatus();
     }
 
-    public static void main(String[] args) {
-        schoolBook sgk = new schoolBook(1, "Toan", "Nha xuat ban giao duc");
-        sgk.addBook();
-        System.out.println(" " + sgk.toString());
-    }
+//    public static void main(String[] args) {
+//        schoolBook sgk = new schoolBook(1, "Toan", "Nha xuat ban giao duc");
+//        sgk.addBook();
+//        System.out.println(" " + sgk.toString());
+//    }
 
 }

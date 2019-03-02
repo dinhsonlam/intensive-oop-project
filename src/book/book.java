@@ -5,7 +5,7 @@ public interface book {
     
     public abstract  void addBook();
 
-    public abstract void deleteBook(int bookID);
+    public abstract void removeBook(int bookID);
 
     public abstract void updateBook(int bookID);
 

@@ -2,10 +2,15 @@ package main;
 
 import book.*;
 import java.util.Scanner;
+import user.students;
+import user.teachers;
+import user.user;
 
 public class main {
 
-    static bookDetail sach1 = new bookDetail(0, "", "");
+    static bookDetail sach1 = new bookDetail(0, "", "", "");
+    static user hocsinh = new students(0, "", "");
+    static user giaovien = new teachers();
 
     public static void main(String[] args) {
 
@@ -60,13 +65,12 @@ public class main {
         System.out.println("********************************************");
         System.out.println("\n\n");
 
-        System.out.println("\tPress 2: Members Management ");// add a new member, display and delete member
-        System.out.println("\tPress 5: Books Management");// add a new books, delete book
-//        System.out.println("\tPress 1: Display Existing Libraries");
+        System.out.println("\tPress 1: Books Management");// display all of book, add a new books, delete book
+        System.out.println("\tPress 2: Members Management ");// add a new member, display all of member info and delete member
         System.out.println("\tPress 3: Display Existing Available Books");
         System.out.println("\tPress 4: Display Existing Book Being Borrowed");
-        System.out.println("\tPress 7: Issue a book");
-        System.out.println("\tPress 8: Exit");
+        System.out.println("\tPress 5: Issue a book");//show member, show book -> choose type of member, choose book and
+        System.out.println("\tPress 6: Exit");//exit now
 
         System.out.println("--- Please select you obtion to take action --- ");
         Scanner input = new Scanner(System.in);
@@ -83,9 +87,38 @@ public class main {
         int check;
         switch (selectOption) {
             case 1:
-                System.out.println("This function is building...");
+                sach1.displayAvailbleBookInfor();
+                System.out.println("[1]: Add a new Book | [2]: Remove book | [3]: exit");
+                check = CheckInpInt();
+                while (check != 1 && check != 2) {
+                    System.err.println("Try again...");
+                    check = CheckInpInt();
+                }
+                System.out.println("OK");
+                
+                if (check == 1) {
+                    do {
+                        sach1.addBook();
+                    } while ((check = askUsingFunction()) == 1);
+                    
+                    if (check == 2) {
+                        menu();
+                    }else{
+                        stopProgram();
+                    }
+                    
+                } else {
+
+//                    display all book in list book
+                    sach1.displayAvailbleBookInfor();
+
+//                    choose the book and delete
+//                    sach1.removeBook(check);
+                }
+
                 break;
             case 2:
+
                 System.out.println("This function is building...");
                 break;
             case 3:
@@ -118,14 +151,9 @@ public class main {
                 }
                 break;
             case 6:
-
+                stopProgram();
                 break;
-            case 7:
-
-                break;
-            case 8:
-
-                break;
+           
             default:
                 throw new AssertionError();
         }
@@ -153,11 +181,11 @@ public class main {
         }
 
     }
-//    exit exit immediately
 
+//    exit exit immediately
     private static void stopProgram() {
         System.out.println("[Exited]");
-        System.exit(1);
+        System.exit(0);
     }
 
 //    Check input data of Int
@@ -223,5 +251,4 @@ public class main {
         return (n);
     }
 
-    
 }
