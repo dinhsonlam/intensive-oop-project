@@ -187,6 +187,7 @@ public class main {
                 break;
             case 7:
                 stopProgram();
+//                done
                 break;
             default:
                 System.err.println("\t[There is not this feature]");
