@@ -2,28 +2,24 @@ package main;
 
 import book.*;
 import java.util.Scanner;
+import user.librarians;
 import user.students;
 import user.teachers;
 import user.user;
 
+import static otherFeature.checkInputData.CheckInpInt;
+
 public class main {
 
     static bookDetail sach1 = new bookDetail(0, "", "", "");
+
     static user hocsinh = new students(0, "", "");
     static user giaovien = new teachers();
+    static librarians thuthu = new librarians();
 
     public static void main(String[] args) {
 
         menu();
-//        while (true) {
-//            do {
-//                if (login() == 1) {
-//                    menu();
-//                } else {
-//                    System.out.println("Thoat");
-//                }
-//            } while (true);
-//        }
 
     }
 
@@ -66,14 +62,17 @@ public class main {
         System.out.println("\n\n");
 
         System.out.println("\tPress 1: Books Management");// display all of book, add a new books, delete book
-        System.out.println("\tPress 2: Members Management ");// add a new member, display all of member info and delete member
+        System.out.println("\tPress 2: Members Management ");//display all of member, add a new member, display all of member info and delete member
         System.out.println("\tPress 3: Display Existing Available Books");
         System.out.println("\tPress 4: Display Existing Book Being Borrowed");
-        System.out.println("\tPress 5: Issue a book");//show member, show book -> choose type of member, choose book and
-        System.out.println("\tPress 6: Exit");//exit now
+        System.out.println("\tPress 5: Borrow Book");//show member, show book -> choose type of member, choose book and
+        System.out.println("\tPress 6: Return Book");
+        System.out.println("\tPress 7: Exit");//exit now
 
         System.out.println("--- Please select you obtion to take action --- ");
+
         Scanner input = new Scanner(System.in);
+
         int choose;
         do {
             choose = CheckInpInt();
@@ -87,42 +86,72 @@ public class main {
         int check;
         switch (selectOption) {
             case 1:
+//                Book Management
                 sach1.displayAvailbleBookInfor();
                 System.out.println("[1]: Add a new Book | [2]: Remove book | [3]: exit");
                 check = CheckInpInt();
                 while (check != 1 && check != 2) {
-                    System.err.println("Try again...");
+                    System.err.println("\t[There is not this feature]");
                     check = CheckInpInt();
                 }
-                System.out.println("OK");
-                
+
                 if (check == 1) {
                     do {
+                        System.out.println("\tPlease enter book info: ");
                         sach1.addBook();
                     } while ((check = askUsingFunction()) == 1);
-                    
+
                     if (check == 2) {
                         menu();
-                    }else{
+                    } else {
                         stopProgram();
                     }
-                    
+
                 } else {
 
 //                    display all book in list book
                     sach1.displayAvailbleBookInfor();
-
+                    check = CheckInpInt();
 //                    choose the book and delete
-//                    sach1.removeBook(check);
+                    sach1.removeBook(check);
                 }
 
                 break;
+
+//                --Lam is making it
             case 2:
 
-                System.out.println("This function is building...");
+//                Members Management
+                thuthu.displayUserInfo();
+                System.out.println("[1]: Add a member | [2]: Back");
+                check = CheckInpInt();
+                while (check != 1 && check != 2) {
+                    System.err.println("\t[There is not this feature]");
+                    check = CheckInpInt();
+                }
+
+                if (check == 1) {
+                    do {
+                        System.out.println("\tPlease enter member info: ");
+                        thuthu.addUser();
+
+                    } while ((check = askUsingFunction()) == 1);
+
+                    if (check == 2) {
+                        menu();
+                    } else {
+                        stopProgram();
+                    }
+
+                } else {
+                    menu();
+
+                }
+
+//                System.out.println("This function is building...\n \tPlease choose another feature");
                 break;
             case 3:
-                System.out.println("This function is building...");
+                System.out.println("This function is building...\n \tPlease choose another feature");
 
                 do {
                     sach1.displayAvailbleBookInfor();
@@ -136,26 +165,31 @@ public class main {
                 break;
 
             case 4:
-                System.out.println("This function is building...");
+                System.out.println("This function is building...\n \tPlease choose another feature");
                 break;
             case 5:
-                do {
-                    sach1.addBook();
-                    System.out.println("Add book OK");
-                } while ((check = askUsingFunction()) == 1);
+//            
+                sach1.displayIssueBookInfo();
+                System.out.println("\tPlease choose name book: ");
+//               Kiem tra du lieu nhap va, cho phep nhap vao kieu so nguyen Int
+                int input = CheckInpInt();
 
-                if (check == 2) {
-                    menu();
+                if (sach1.checkBookId(input) == 0) {
+                    System.out.println("\t[Your borrowed book]");
+                    sach1.displayBorrowedInfo(input);
                 } else {
-                    stopProgram();
+                    System.err.println("\t[There are not any borrowed book at our Library]");
                 }
                 break;
             case 6:
+                System.out.println("This function is building...\n \tPlease choose another feature");
+
+                break;
+            case 7:
                 stopProgram();
                 break;
-           
             default:
-                throw new AssertionError();
+                System.err.println("\t[There is not this feature]");
         }
     }
 
@@ -189,66 +223,63 @@ public class main {
     }
 
 //    Check input data of Int
-    public static int CheckInpInt() {
-
-        Scanner input = new Scanner(System.in);
-
-        boolean check = false;
-
-        int n = 0;
-        while (!check) {
-            System.out.print(" ");
-            try {
-                n = input.nextInt();
-                check = true;
-            } catch (Exception e) {
-                System.err.print("--Invalid data--: ");
-                input.nextLine();
-            }
-        }
-        return (n);
-    }
-
+//    public static int CheckInpInt() {
+//
+//        Scanner input = new Scanner(System.in);
+//
+//        boolean check = false;
+//
+//        int n = 0;
+//        while (!check) {
+//            System.out.print(" ");
+//            try {
+//                n = input.nextInt();
+//                check = true;
+//            } catch (Exception e) {
+//                System.err.print("--Invalid data--: ");
+//                input.nextLine();
+//            }
+//        }
+//        return (n);
+//    }
 //        Check input data of float
-    public static float CheckInpFloat() {
-
-        Scanner input = new Scanner(System.in);
-
-        boolean check = false;
-
-        float n = 0;
-        while (!check) {
-            System.out.print(" ");
-            try {
-                n = input.nextFloat();
-                check = true;
-            } catch (Exception e) {
-                System.err.print("--Invalid data--: ");
-                input.nextLine();
-            }
-        }
-        return (n);
-    }
-
+//    public static float CheckInpFloat() {
+//
+//        Scanner input = new Scanner(System.in);
+//
+//        boolean check = false;
+//
+//        float n = 0;
+//        while (!check) {
+//            System.out.print(" ");
+//            try {
+//                n = input.nextFloat();
+//                check = true;
+//            } catch (Exception e) {
+//                System.err.print("--Invalid data--: ");
+//                input.nextLine();
+//            }
+//        }
+//        return (n);
+//    }
 //        Check input data of Double
-    public static double CheckInpDouble() {
-
-        Scanner input = new Scanner(System.in);
-
-        boolean check = false;
-
-        double n = 0;
-        while (!check) {
-            System.out.print(" ");
-            try {
-                n = input.nextDouble();
-                check = true;
-            } catch (Exception e) {
-                System.err.print("--Invalid data--: ");
-                input.nextLine();
-            }
-        }
-        return (n);
-    }
-
+//    public static double CheckInpDouble() {
+//
+//        Scanner input = new Scanner(System.in);
+//
+//        boolean check = false;
+//
+//        double n = 0;
+//        while (!check) {
+//            System.out.print(" ");
+//            try {
+//                n = input.nextDouble();
+//                check = true;
+//            } catch (Exception e) {
+//                System.err.print("--Invalid data--: ");
+//                input.nextLine();
+//            }
+//        }
+//        return (n);
+//    }
 }

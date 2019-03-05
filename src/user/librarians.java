@@ -29,8 +29,26 @@ public class librarians extends user {
 
     @Override
     public void displayUserInfo() {
-        System.out.println("User name: " + getUserName());
-        System.out.println("Password: " + getPassword());
+        System.out.println("-All of member's information:-");
+        
+        System.out.println("\t-------Teacher Member------");
+        for (teachers teacher : teacherList) {
+
+            System.out.println("\tId: " + teacher.getUserID());
+            System.out.println("\tName: " + teacher.getName());
+            System.out.println("\tPosition: " + teacher.getPosition());
+            System.out.println("---------------------------");
+        }
+
+        System.out.println("\t-------Student Member------");
+        for (students student : studentList) {
+
+            System.out.println("\tId: " + student.getUserID());
+            System.out.println("\tName1: " + student.getName());
+            System.out.println("\tPosition: " + student.getPosition());
+            System.out.println("\tClass: " + student.getClass_());
+            System.out.println("---------------------------");
+        }
     }
 
     public void addUser() {
@@ -60,45 +78,45 @@ public class librarians extends user {
             System.out.println("Enter teacher's name: ");
             String name = input.nextLine();
             user user_ = new teachers(id, name);
-            
+
             this.teacherList.add((teachers) user_);
         }
 
     }
 
     public void removeUser(int userID, String userType) {
-        
+
 //        userType = student or teacher
 //        System.out.println("Chooce type of");
-
         if ("student".equals(userType)) {
             this.studentList.remove(userID);
-        }else{
+        } else {
             this.teacherList.remove(userID);
         }
     }
 
+//    function cho muon sach
     public void borrowBook() {
-        
+
     }
 
     public void displayAllUser() {
         System.out.println("-All of member's information:-");
-        
+
         for (teachers teacher : teacherList) {
             System.out.println("-------Teacher Member------");
-            System.out.println("\tId: "+teacher.getUserID());
-            System.out.println("\tName: "+teacher.getName());
-            System.out.println("\tPosition: "+teacher.getPosition());
+            System.out.println("\tId: " + teacher.getUserID());
+            System.out.println("\tName: " + teacher.getName());
+            System.out.println("\tPosition: " + teacher.getPosition());
             System.out.println("---------------------------");
         }
-        
+
         for (students student : studentList) {
             System.out.println("-------Teacher Member------");
-            System.out.println("\tId: "+student.getUserID());
-            System.out.println("\tName1: "+student.getName());
-            System.out.println("\tPosition: "+student.getPosition());
-            System.out.println("\tClass: "+student.getClass_());
+            System.out.println("\tId: " + student.getUserID());
+            System.out.println("\tName1: " + student.getName());
+            System.out.println("\tPosition: " + student.getPosition());
+            System.out.println("\tClass: " + student.getClass_());
             System.out.println("---------------------------");
         }
     }

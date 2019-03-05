@@ -131,7 +131,13 @@ public class bookDetail implements book {
 
     @Override
     public void displayIssueBookInfo() {
+        System.out.println("-Book information:-");
+        for (bookDetail book : bookList) {
+            System.out.println("----------");
+            System.out.println("Id: " + book.getBookID());
+            System.out.println("Book Name: " + book.getTitle());
 
+        }
     }
 
     //    fucntions to input data into object
@@ -163,6 +169,35 @@ public class bookDetail implements book {
         return super.toString()+"BookID: "+this.bookID+", bookTitle: "+this.title+", author: "+this.author; 
     }
 
+    
+    //    Kiem tra id nhập vào để mượn sách -- Thiet made it
+    public int checkBookId(int id) {
+
+        for (bookDetail book : bookList) {
+            if (book.getBookID() == id) {
+                return 0;
+            }
+        }
+        return 1;
+
+    }
+
+    
+        //Hien thi sach duoc muon sau khi chon id sach -- Thiet made it
+    public void displayBorrowedInfo(int id) {
+        for (bookDetail book : bookList) {
+            if (book.getBookID() == id) {
+                System.out.println("----------");
+                System.out.println("Id: " + book.getBookID());
+                System.out.println("Title: " + book.getTitle());
+                System.out.println("Author: " + book.getAuthor());
+                System.out.println("----------");
+                break;
+            }
+        }
+    }
+
+    
     
     
 }
